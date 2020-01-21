@@ -1,8 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {createUseStyles} from 'react-jss'
+const style = createUseStyles({
+  
+})
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -22,4 +26,3 @@ function App() {
   );
 }
 
-export default App;
