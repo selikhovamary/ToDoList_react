@@ -9,11 +9,11 @@ const useStyles = createUseStyles({
     height: '100%',
     display: 'flex',
     backgroundSize: 'cover',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   app: {
     width: '50%',
+    marginTop: '10%'
   },
   inputOut: {
     display: 'flex',
@@ -35,6 +35,12 @@ const useStyles = createUseStyles({
     color: 'white',
     backgroundColor: '#dd714b',
     outline: 'none',
+  },
+  item: {
+    backgroundColor: '#ffffffde',
+    marginTop: 10,
+    padding: '5px 20px 5px 20px',
+    borderRadius: 10,
   }
 })
 
@@ -48,7 +54,7 @@ export default function ToDo() {
     setArr(newArr);
     setInputText('')
   }
-const items = arr.map(e => {return <div key = {Math.random()}>{e.inputText}</div>})
+const items = arr.map(e => {return <div key = {Math.random()} className={style.item}>{e.inputText}</div>})
   return (
     <div className={style.content}>
       <div className={style.app}>
