@@ -47,11 +47,13 @@ const useStyles = createUseStyles({
 export default function ToDo() {
   const style = useStyles();
   const [inputText, setInputText] = useState('');
-  const [arr, setArr] = useState([]);
+  const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')));
+ // setArr(JSON.parse(localStorage.getItem('items')))
   const addItems = () => {
     if (!inputText) return;
     const newArr = arr.concat({ inputText });
     setArr(newArr);
+    localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('')
   }
 const items = arr.map(e => {return <div key = {Math.random()} className={style.item}>{e.inputText}</div>})
