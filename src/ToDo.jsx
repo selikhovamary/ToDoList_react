@@ -40,7 +40,7 @@ const useStyles = createUseStyles({
   item: {
     backgroundColor: '#ffffffde',
     marginTop: 10,
-    padding: '5px 20px 5px 20px',
+    padding: '5px 20px 5px 10px',
     borderRadius: 10,
   },
   h1: {
@@ -64,7 +64,7 @@ export default function ToDo() {
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('')
   }
-const items = arr.map(e => {return <div key = {Math.random()} className={style.item}>{e.inputText}</div>})
+const items = arr.map(e => {return <div key = {Math.random()} className={style.item}><input type="checkbox" style ={{marginRight: 10}}/>{e.inputText}</div>})
   return (
     <div className={style.content}>
       <div className={style.app}>
