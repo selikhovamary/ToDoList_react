@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
   },
   app: {
     width: '50%',
-    marginTop: '10%'
+    marginTop: '5%'
   },
   inputOut: {
     display: 'flex',
@@ -41,6 +41,12 @@ const useStyles = createUseStyles({
     marginTop: 10,
     padding: '5px 20px 5px 20px',
     borderRadius: 10,
+  },
+  h1: {
+    color: '#e9d4d4',
+    textAlign: 'center',
+    letterSpacing: '6pt',
+    fontWeight: '100',
   }
 })
 
@@ -60,6 +66,7 @@ const items = arr.map(e => {return <div key = {Math.random()} className={style.i
   return (
     <div className={style.content}>
       <div className={style.app}>
+      <h1 className={style.h1}>To Do List</h1>
         <div className={style.inputOut}><input value={inputText} className={style.input} type="text" onChange={(e) => setInputText(e.target.value)} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
