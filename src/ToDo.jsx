@@ -12,7 +12,7 @@ const useStyles = createUseStyles({
     justifyContent: 'center',
   },
   app: {
-    width: '50%',
+    width: '60%',
     marginTop: '5%'
   },
   inputOut: {
@@ -28,9 +28,10 @@ const useStyles = createUseStyles({
     boxSizing: 'border-box',
     paddingLeft: 20,
     paddingRight: 20,
+    marginRight: 10,
   },
   button: {
-    width: '19%',
+    minWidth: '20%',
     borderRadius: 10,
     color: 'white',
     backgroundColor: '#dd714b',
@@ -43,10 +44,11 @@ const useStyles = createUseStyles({
     borderRadius: 10,
   },
   h1: {
-    color: '#e9d4d4',
+    color: '#f3e8e8',
     textAlign: 'center',
     letterSpacing: '6pt',
     fontWeight: '100',
+    marginBottom: 50,
   }
 })
 
