@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { createUseStyles } from 'react-jss'
+import Item from './Item.tsx'
 
 const useStyles = createUseStyles({
   content: {
@@ -36,6 +37,19 @@ const useStyles = createUseStyles({
     color: 'white',
     backgroundColor: '#dd714b',
     outline: 'none',
+    letterSpacing: '4pt',
+    fontWeight: '100',
+  },
+  buttonCl: {
+    minWidth: '20%',
+    borderRadius: 10,
+    color: 'white',
+    backgroundColor: '#4f7683',
+    outline: 'none',
+    padding: 8,
+    marginTop: 10,
+    letterSpacing: '4pt',
+    fontWeight: '100',
   },
   item: {
     backgroundColor: '#ffffffde',
@@ -56,23 +70,32 @@ export default function ToDo() {
   const style = useStyles();
   const [inputText, setInputText] = useState('');
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
- // setArr(JSON.parse(localStorage.getItem('items')))
+  const [check, setCheck] = useState(false);
+  // setArr(JSON.parse(localStorage.getItem('items')))
   const addItems = () => {
+    debugger
     if (!inputText) return;
-    const newArr = arr.concat({ inputText });
+    const newArr = arr.concat({ inputText, check, key: Math.random() });
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
-    setInputText('')
+    setInputText('');
+    setCheck(false);
   }
-const items = arr.map(e => {return <div key = {Math.random()} className={style.item}><input type="checkbox" style ={{marginRight: 10}}/>{e.inputText}</div>})
+  const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => { setCheck(e.target.checked) }} /> })
+  // const items = arr.map((el) => {return <div  className={style.item} checked = {el.check}><input type="checkbox" checked = {check}
+  //   onChange = {(e) => {setCheck(e.target.checked); setArr(arr)}} style ={{marginRight: 10}}/>{el.inputText}</div>})
   return (
     <div className={style.content}>
       <div className={style.app}>
-      <h1 className={style.h1}>To Do List</h1>
-        <div className={style.inputOut}><input value={inputText} className={style.input} type="text" onChange={(e) => setInputText(e.target.value)} />
+        <h1 className={style.h1}>To Do List</h1>
+        <div className={style.inputOut}><input value={inputText} className={style.input} type="text"
+          onChange={(e) => setInputText(e.target.value)} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
         <div>{items}</div>
+        {arr.length == 0 ? null : <button className={style.buttonCl} onClick={() => {
+          localStorage.clear(); window.location.reload()
+        }}>Clear</button>}
       </div>
     </div>
   );
