@@ -47,7 +47,7 @@ const useStyles = createUseStyles({
 export default function ToDo() {
   const style = useStyles();
   const [inputText, setInputText] = useState('');
-  const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')));
+  const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
  // setArr(JSON.parse(localStorage.getItem('items')))
   const addItems = () => {
     if (!inputText) return;
