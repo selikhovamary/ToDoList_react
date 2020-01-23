@@ -71,7 +71,7 @@ export default function ToDo() {
   const [inputText, setInputText] = useState('');
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
   const [check, setCheck] = useState(false);
-  const [bg, setBg] = useState('url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
+  const [bg, setBg] = useState(JSON.parse(localStorage.getItem('bg')) || 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
 
   const addItems = () => {
     if (!inputText) return;
@@ -82,7 +82,7 @@ export default function ToDo() {
     setCheck(false);
   }
 debugger
-  const back = (e) => {if (e.target.checked) setBg(e.target.value)}
+  const back = (e) => {if (e.target.checked) setBg(e.target.value); localStorage.setItem('bg', JSON.stringify(e.target.value))}
   const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => { setCheck(e.target.checked) }} /> })
   // const items = arr.map((el) => {return <div  className={style.item} checked = {el.check}><input type="checkbox" checked = {check}
   //   onChange = {(e) => {setCheck(e.target.checked); setArr(arr)}} style ={{marginRight: 10}}/>{el.inputText}</div>})
