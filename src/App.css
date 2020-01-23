@@ -32,7 +32,59 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+body,
+.radio {
+  background-color: #ffffff;
+}
+
+.radio {
+  -webkit-appearance: none;
+  margin: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  vertical-align: middle;
+  padding: 7px;
+  box-shadow: hsla(0, 0%, 100%, .5) 0 1px 1px,
+    inset rgba(165, 122, 122, .5) 0 0 0 1px;
+  background-image:
+  -webkit-radial-gradient(#00ffc9 0%,
+  #35abd4 15%,
+  #69bad9 28%,
+  #9000 70%);
+  background-repeat: no-repeat;
+  transition-property: background-position, transform;
+  transition-duration: .15s, .25s;
+  transition-timing-function: cubic-bezier(.8, 0, 1, 1);
+}
+
+.radio,
+.radio:active {
+  background-position: 35px 0;
+  outline: none;
+}
+
+.radio:checked {
+  background-position: 0 0;
+  transition-property: background-position, transform;
+  transition-duration: .2s, .25s;
+  transition-delay: .15s, 0s;
+  transition-timing-function: cubic-bezier(0, 0, .2, 1);
+}
+
+.radio:active {
+  transform: scale(1.5);
+  transition: transform .1s cubic-bezier(0, 0, .2, 1);
+}
+
+.radio:checked~.radio,
+.radio:checked~.radio:active {
+  background-position: -35px 0;
 }

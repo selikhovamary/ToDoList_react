@@ -86,6 +86,14 @@ export default function ToDo() {
   //   onChange = {(e) => {setCheck(e.target.checked); setArr(arr)}} style ={{marginRight: 10}}/>{el.inputText}</div>})
   return (
     <div className={style.content}>
+      <div style = {{position: "absolute", top: '1%', right: '5%'}}>
+        <input type="radio" name="radiobutton" className="radio" />
+        <input type="radio" name="radiobutton" className="radio" />
+        <input type="radio" name="radiobutton" className="radio" />
+      </div>
+
+
+
       <div className={style.app}>
         <h1 className={style.h1}>To Do List</h1>
         <div className={style.inputOut}><input value={inputText} className={style.input} type="text"
@@ -94,7 +102,7 @@ export default function ToDo() {
         </div>
         <div>{items}</div>
         {arr.length == 0 ? null : <button className={style.buttonCl} onClick={() => {
-          localStorage.clear(); window.location.reload()
+          localStorage.clear(); setArr([]);
         }}>Clear</button>}
       </div>
     </div>
