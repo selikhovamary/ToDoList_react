@@ -3,9 +3,9 @@ import './App.css';
 import { createUseStyles } from 'react-jss'
 import Item from './Item.tsx'
 
+
 const useStyles = createUseStyles({
   content: {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)',
     width: '100%',
     height: '100%',
     display: 'flex',
@@ -71,9 +71,9 @@ export default function ToDo() {
   const [inputText, setInputText] = useState('');
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
   const [check, setCheck] = useState(false);
-  // setArr(JSON.parse(localStorage.getItem('items')))
+  const [bg, setBg] = useState('url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
+
   const addItems = () => {
-    debugger
     if (!inputText) return;
     const newArr = arr.concat({ inputText, check, key: Math.random() });
     setArr(newArr);
@@ -81,19 +81,18 @@ export default function ToDo() {
     setInputText('');
     setCheck(false);
   }
+debugger
+  const back = (e) => {if (e.target.checked) setBg(e.target.value)}
   const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => { setCheck(e.target.checked) }} /> })
   // const items = arr.map((el) => {return <div  className={style.item} checked = {el.check}><input type="checkbox" checked = {check}
   //   onChange = {(e) => {setCheck(e.target.checked); setArr(arr)}} style ={{marginRight: 10}}/>{el.inputText}</div>})
   return (
-    <div className={style.content}>
+    <div className={style.content} style = {{backgroundImage: bg}}>
       <div style = {{position: "absolute", top: '1%', right: '5%'}}>
-        <input type="radio" name="radiobutton" className="radio" />
-        <input type="radio" name="radiobutton" className="radio" />
-        <input type="radio" name="radiobutton" className="radio" />
+        <input type="radio" className="radio" value = 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)' onClick = {back}/>
+        <input type="radio" className="radio" value = 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)'  onClick = {back}/>
+        <input type="radio" className="radio" value = 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)'  onClick = {back}/>
       </div>
-
-
-
       <div className={style.app}>
         <h1 className={style.h1}>To Do List</h1>
         <div className={style.inputOut}><input value={inputText} className={style.input} type="text"

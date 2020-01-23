@@ -6,7 +6,7 @@ interface P {
 style?: any,
 check?: boolean,
 text?: string,
-onChange?: () => void,
+onChange?: (e: any) => void,
 }
 export default function Item (p: P) {
     return <div  className={p.style}>

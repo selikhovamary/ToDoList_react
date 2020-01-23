@@ -56,8 +56,8 @@ body,
     inset rgba(165, 122, 122, .5) 0 0 0 1px;
   background-image:
   -webkit-radial-gradient(#00ffc9 0%,
-  #35abd4 15%,
-  #69bad9 28%,
+  #1abaf2 15%,
+  #4890ab 28%,
   #9000 70%);
   background-repeat: no-repeat;
   transition-property: background-position, transform;
