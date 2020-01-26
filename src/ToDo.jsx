@@ -17,7 +17,9 @@ const useStyles = createUseStyles({
     marginTop: '5%',
     overflow: 'hidden',
     '@media (max-width: 500px)': {
-      width: '90%'}
+      width: '90%',
+      marginTop: '15%',
+    }
   },
   inputOut: {
     display: 'flex',
@@ -87,33 +89,36 @@ export default function ToDo() {
     setCheck(false);
   }
 
-  const back = (e) => {if (e.target.checked) {
-    let bgVal = e.target.value === '1' ? 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)' : (e.target.value === '2' ? 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)' : 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)'); 
-    setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))}}
-  const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => {setCheck(e.target.checked) }} /> })
+  const back = (e) => {
+    if (e.target.checked) {
+      let bgVal = e.target.value === '1' ? 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)' : (e.target.value === '2' ? 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)' : 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)');
+      setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))
+    }
+  }
+  const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => { setCheck(e.target.checked) }} /> })
 
   return (
-    <div className={style.content} style = {{backgroundImage: bg}}>
-      <div style = {{position: "absolute", top: '1%', right: '5%'}}>
-        <input type="radio" name = 'radio' className="radio" value = '1' checked = {bg == 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)'}
-        onClick = {back}/>
-        <input type="radio" name = 'radio'  className="radio" value = '2' checked = {bg == 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)'}
-         onClick = {back}/>
-        <input type="radio" name = 'radio' className="radio" value = '3' checked = {bg == 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)'}
-         onClick = {back}/>
+    <div className={style.content} style={{ backgroundImage: bg }}>
+      <div style={{ position: "absolute", top: '1%', right: '5%' }}>
+        <input type="radio" name='radio' className="radio" value='1' checked={bg == 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)'}
+          onClick={back} />
+        <input type="radio" name='radio' className="radio" value='2' checked={bg == 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)'}
+          onClick={back} />
+        <input type="radio" name='radio' className="radio" value='3' checked={bg == 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)'}
+          onClick={back} />
       </div>
       <div className={style.app}>
         <h1 className={style.h1}>To Do List</h1>
         <div className={style.inputOut}><input value={inputText} className={style.input} type="text"
-          onChange={(e) =>{if (e.target.value != ' ') setInputText(e.target.value); else setInputText('')}}  onKeyPress={(e) => {if (e.key === 'Enter') addItems() }}/>
+          onChange={(e) => { if (e.target.value != ' ') setInputText(e.target.value); else setInputText('') }} onKeyPress={(e) => { if (e.key === 'Enter') addItems() }} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
-        <div style = {{overflowY: 'scroll', maxHeight: '59%', marginRight: -16.7, marginTop: 10,}}>{items}</div>
+        <div style={{ overflowY: 'scroll', maxHeight: '59%', marginRight: -16.7, marginTop: 10, width: '100%'}}>{items}</div>
         {arr.length == 0 ? null : <button className={style.buttonCl} onClick={() => {
           localStorage.clear(); setArr([]);
         }}>Clear</button>}
       </div>
-      </div>
+    </div>
   );
 }
 
