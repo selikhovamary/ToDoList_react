@@ -11,6 +11,6 @@ onChange?: (e: any) => void,
 export default function Item (p: P) {
     return <div  className={p.style}>
         <input type="checkbox" checked = {p.check}  style ={{marginRight: 10}} onChange = {p.onChange}/>
-        {p.text}
+        <div style = {{overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.text}</div>
         </div>
 }

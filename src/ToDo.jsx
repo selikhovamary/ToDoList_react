@@ -56,6 +56,8 @@ const useStyles = createUseStyles({
     marginTop: 10,
     padding: '5px 20px 5px 10px',
     borderRadius: 10,
+    display: 'flex',
+    alignItems: 'baseline',
   },
   h1: {
     color: '#f3e8e8',
@@ -100,7 +102,7 @@ export default function ToDo() {
       <div className={style.app}>
         <h1 className={style.h1}>To Do List</h1>
         <div className={style.inputOut}><input value={inputText} className={style.input} type="text"
-          onChange={(e) =>{if (e.target.value != ' ') setInputText(e.target.value); else setInputText('')}} />
+          onChange={(e) =>{if (e.target.value != ' ') setInputText(e.target.value); else setInputText('')}}  onKeyPress={(e) => {if (e.key === 'Enter') addItems() }}/>
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
         <div>{items}</div>
