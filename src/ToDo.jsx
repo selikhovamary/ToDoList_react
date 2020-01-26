@@ -85,7 +85,7 @@ export default function ToDo() {
   const back = (e) => {if (e.target.checked) {
     let bgVal = e.target.value === '1' ? 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)' : (e.target.value === '2' ? 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)' : 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)'); 
     setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))}}
-  const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => { setCheck(e.target.checked) }} /> })
+  const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => {setCheck(e.target.checked) }} /> })
 
   return (
     <div className={style.content} style = {{backgroundImage: bg}}>
@@ -100,7 +100,7 @@ export default function ToDo() {
       <div className={style.app}>
         <h1 className={style.h1}>To Do List</h1>
         <div className={style.inputOut}><input value={inputText} className={style.input} type="text"
-          onChange={(e) => setInputText(e.target.value)} />
+          onChange={(e) =>{if (e.target.value != ' ') setInputText(e.target.value); else setInputText('')}} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
         <div>{items}</div>
