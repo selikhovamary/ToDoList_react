@@ -16,6 +16,8 @@ const useStyles = createUseStyles({
     width: '60%',
     marginTop: '5%',
     overflow: 'hidden',
+    '@media (max-width: 500px)': {
+      width: '90%'}
   },
   inputOut: {
     display: 'flex',
