@@ -24,6 +24,7 @@ const useStyles = createUseStyles({
   inputOut: {
     display: 'flex',
     justifyContent: 'space-between',
+    marginBottom: 10,
   },
   input: {
     border: 'none',
@@ -57,8 +58,7 @@ const useStyles = createUseStyles({
     fontWeight: '100',
   },
   item: {
-    backgroundColor: '#ffffffde',
-    marginTop: 10,
+    marginBottom: 10,
     padding: '5px 20px 5px 10px',
     borderRadius: 10,
     display: 'flex',
@@ -95,7 +95,8 @@ export default function ToDo() {
       setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))
     }
   }
-  const items = arr.map((el) => { return <Item style={style.item} check={el.check} text={el.inputText} onChange={(e) => { setCheck(e.target.checked) }} /> })
+  
+  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} /> })
 
   return (
     <div className={style.content} style={{ backgroundImage: bg }}>
@@ -113,7 +114,7 @@ export default function ToDo() {
           onChange={(e) => { if (e.target.value != ' ') setInputText(e.target.value); else setInputText('') }} onKeyPress={(e) => { if (e.key === 'Enter') addItems() }} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
-        <div style={{ overflowY: 'scroll', maxHeight: '59%', marginRight: -16.7, marginTop: 10, width: '100%'}}>{items}</div>
+        <div style={{ overflowY: 'scroll', maxHeight: '59%', marginRight: -16.7, }}>{items}</div>
         {arr.length == 0 ? null : <button className={style.buttonCl} onClick={() => {
           localStorage.clear(); setArr([]);
         }}>Clear</button>}
