@@ -113,8 +113,8 @@ input[type="checkbox"] + label:last-child { margin-bottom: 0; }
 input[type="checkbox"] + label:before {
   content: '';
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   border: 1px solid #215f55;
   position: absolute;
   left: 0;
