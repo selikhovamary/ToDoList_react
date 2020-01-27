@@ -77,16 +77,15 @@ export default function ToDo() {
   const style = useStyles();
   const [inputText, setInputText] = useState('');
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
-  const [check, setCheck] = useState(false);
+ // const [check, setCheck] = useState(false);
   const [bg, setBg] = useState(JSON.parse(localStorage.getItem('bg')) || 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
 
   const addItems = () => {
     if (!inputText) return;
-    const newArr = arr.concat({ inputText, check, key: Math.random() });
+    const newArr = arr.concat({ inputText, key: Math.random() });
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('');
-    setCheck(false);
   }
 
   const back = (e) => {
@@ -96,7 +95,7 @@ export default function ToDo() {
     }
   }
   
-  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} /> })
+  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} key = {Math.random()}/> })
 
   return (
     <div className={style.content} style={{ backgroundImage: bg }}>
@@ -114,7 +113,7 @@ export default function ToDo() {
           onChange={(e) => { if (e.target.value != ' ') setInputText(e.target.value); else setInputText('') }} onKeyPress={(e) => { if (e.key === 'Enter') addItems() }} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
-        <div style={{ overflowY: 'scroll', maxHeight: '59%', marginRight: -16.7, }}>{items}</div>
+        <div style={{ overflowY: 'scroll', maxHeight: '59%', marginRight: -16.8, maxWidth: '120%',}}>{items}</div>
         {arr.length == 0 ? null : <button className={style.buttonCl} onClick={() => {
           localStorage.clear(); setArr([]);
         }}>Clear</button>}

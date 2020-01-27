@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss'
 interface P {
 style?: any,
 text?: string,
+check?: boolean,
 onChange?: (e: any) => void,
 }
 export default function Item (p: P) {
