@@ -113,7 +113,7 @@ export default function ToDo() {
           onChange={(e) => { if (e.target.value != ' ') setInputText(e.target.value); else setInputText('') }} onKeyPress={(e) => { if (e.key === 'Enter') addItems() }} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
-        <div style={{ overflowY: 'scroll', maxHeight: '59%', marginRight: -16.8, maxWidth: '120%',}}>{items}</div>
+        <div style={{ overflowY: 'overlay', maxHeight: '59%', marginRight: -17, paddingRight: 17, maxWidth: '120%',}}>{items}</div>
         {arr.length == 0 ? null : <button className={style.buttonCl} onClick={() => {
           localStorage.clear(); setArr([]);
         }}>Clear</button>}
