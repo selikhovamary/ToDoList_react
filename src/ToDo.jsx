@@ -77,25 +77,32 @@ export default function ToDo() {
   const style = useStyles();
   const [inputText, setInputText] = useState('');
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
- // const [check, setCheck] = useState(false);
   const [bg, setBg] = useState(JSON.parse(localStorage.getItem('bg')) || 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
-
+  let checked;
+  
   const addItems = () => {
     if (!inputText) return;
-    const newArr = arr.concat({ inputText, key: Math.random() });
+    const newArr = arr.concat({ inputText, checked, key: Math.random() });
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('');
   }
-
-  const back = (e) => {
+ const editItem = (i) => {
+   debugger
+   const newArr2 = arr.map(e => { if (e.inputText === i.target.nextSibling.innerHTML) e.check = i.target.checked; return e});
+   setArr(newArr2)
+   localStorage.setItem('items', JSON.stringify(newArr2));
+ }
+  
+ const back = (e) => {
     if (e.target.checked) {
       let bgVal = e.target.value === '1' ? 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)' : (e.target.value === '2' ? 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)' : 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)');
       setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))
     }
   }
-  
-  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} key = {Math.random()}/> })
+
+  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} isChecked = {editItem} checked = {el.check} key = {Math.random()}/> })
+
 
   return (
     <div className={style.content} style={{ backgroundImage: bg }}>
