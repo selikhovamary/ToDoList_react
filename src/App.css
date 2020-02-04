@@ -100,7 +100,6 @@ input[type="checkbox"] + label {
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 20px;
   font: 14px/20px 'Open Sans', Arial, sans-serif;
   cursor: pointer;
   -webkit-user-select: none;
@@ -135,6 +134,7 @@ input[type="checkbox"]:checked + label:before {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
 
 
 
