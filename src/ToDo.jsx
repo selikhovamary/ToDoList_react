@@ -82,13 +82,18 @@ export default function ToDo() {
   
   const addItems = () => {
     if (!inputText) return;
+    const checkTheSame = () => {
+      const arr1 = arr.map(e => e.inputText)
+      if(arr1.indexOf(inputText) !== -1) {alert('Такой пункт уже есть (:'); return true}
+      else return false;
+    }
+    if (checkTheSame()) return;
     const newArr = arr.concat({ inputText, checked, key: Math.random() });
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('');
   }
  const editItem = (i) => {
-   debugger
    const newArr2 = arr.map(e => { if (e.inputText === i.target.nextSibling.innerHTML) e.check = i.target.checked; return e});
    setArr(newArr2)
    localStorage.setItem('items', JSON.stringify(newArr2));
