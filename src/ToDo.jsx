@@ -83,8 +83,8 @@ export default function ToDo() {
   const addItems = () => {
     if (!inputText) return;
     const checkTheSame = () => {
-      const arr1 = arr.map(e => e.inputText)
-      if(arr1.indexOf(inputText) !== -1) {alert('Такой пункт уже есть (:'); return true}
+      const arr1 = arr.map(e => e.inputText.toLowerCase().trim())
+      if(arr1.indexOf(inputText.toLowerCase().trim()) !== -1) {alert('Такой пункт уже есть (:'); return true}
       else return false;
     }
     if (checkTheSame()) return;
