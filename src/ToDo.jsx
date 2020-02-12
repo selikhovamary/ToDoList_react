@@ -80,6 +80,7 @@ export default function ToDo() {
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
   const [bg, setBg] = useState(JSON.parse(localStorage.getItem('bg')) || 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
   let checked;
+  let imp;
 
   const addItems = () => {
     if (!inputText) return;
@@ -89,7 +90,7 @@ export default function ToDo() {
       else return false;
     }
     if (checkTheSame()) return;
-    const newArr = arr.concat({ inputText, checked, key: Math.random() });
+    const newArr = arr.concat({ inputText, checked, imp,  key: Math.random() });
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('');
@@ -107,7 +108,7 @@ export default function ToDo() {
     }
   }
 
-  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} isChecked={editItem} checked={el.check} key={Math.random()} /> })
+  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} isChecked={editItem} isImportant = {el.imp} checked={el.check} key={Math.random()} /> })
 
 
   return (
@@ -126,7 +127,7 @@ export default function ToDo() {
           onChange={(e) => { if (e.target.value != ' ') setInputText(e.target.value); else setInputText('') }} onKeyPress={(e) => { if (e.key === 'Enter') addItems() }} />
           <button className={style.button} onClick={addItems}>Add</button>
         </div>
-        <div style={{ overflowY: 'overlay', maxHeight: '59%', marginRight: -17, paddingRight: 17, maxWidth: '120%', }}>{items}</div>
+        <div style={{ overflowY: 'overlay', maxHeight: '59%', marginRight: -19, paddingRight: 19, maxWidth: '120%', }}>{items}</div>
         {arr.length == 0 ? null : <button className={style.buttonCl} onClick={() => {
           localStorage.clear(); setArr([]);
         }}>Clear</button>}
