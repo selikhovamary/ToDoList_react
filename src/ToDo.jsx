@@ -116,7 +116,7 @@ export default function ToDo() {
       setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))
     }
   }
-debugger
+
   const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} isChecked={editItem} isImportant = {setImportant} imp = {el.imp} checked={el.check} key={Math.random()} /> })
 
 

@@ -10,17 +10,8 @@ interface P {
     isImportant?: (e: any) => void,
     imp?: boolean,
 }
-const UseStyles = createUseStyles( { 
-    // important: {
-    //     border: (o: any) => o.imp ? '2px solid red' : 'none',
-    //     boxSizing: 'border-box',
-    //     }
-    },
-)
 
 export default function Item(p: P) {
-    //const [imp, setImp] = useState(p.isImportant)
-    const style = UseStyles();
     
     return <div className={p.style} key={Math.random()} style={p.checked ? ( p.imp ? { backgroundColor: '#9ecebde0', border: '2px solid red' } : { backgroundColor: '#9ecebde0'} ) : ( p.imp ? { backgroundColor: '#ffffffde', border: '2px solid red'} : { backgroundColor: '#ffffffde'})}>
         <input className="styled-checkbox" type="checkbox" checked={p.checked} style={{ marginRight: -15 }} onChange={p.isChecked} />
