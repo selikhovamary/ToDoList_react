@@ -80,7 +80,7 @@ export default function ToDo() {
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
   const [bg, setBg] = useState(JSON.parse(localStorage.getItem('bg')) || 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
   let checked;
-  let imp;
+  const [imp, setImp] = useState(false);
 
   const addItems = () => {
     if (!inputText) return;
@@ -101,14 +101,23 @@ export default function ToDo() {
     localStorage.setItem('items', JSON.stringify(newArr2));
   }
 
+  const setImportant = (i) => {
+    const newArr2 = arr.map(e => {     
+      if (e.inputText === i.target.offsetParent.offsetParent.innerText) {e.imp ? e.imp = !e.imp : e.imp = true; return e }
+      else return e;
+    });
+      setArr(newArr2)
+    localStorage.setItem('items', JSON.stringify(newArr2));
+  }
+
   const back = (e) => {
     if (e.target.checked) {
       let bgVal = e.target.value === '1' ? 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)' : (e.target.value === '2' ? 'url(https://images.unsplash.com/photo-1498190119503-7442dfa7eb4b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2035&q=80)' : 'url(https://images.unsplash.com/photo-1513492365349-8ba97c199501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)');
       setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))
     }
   }
-
-  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} isChecked={editItem} isImportant = {el.imp} checked={el.check} key={Math.random()} /> })
+debugger
+  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} isChecked={editItem} isImportant = {setImportant} imp = {el.imp} checked={el.check} key={Math.random()} /> })
 
 
   return (
