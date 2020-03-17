@@ -90,17 +90,31 @@ export default function ToDo() {
       else return false;
     }
     if (checkTheSame()) return;
-    const newArr = arr.concat({ inputText, checked, imp,  key: Math.random() });
+    const newArr = [{ inputText, checked, imp,  key: Math.random() }].concat(arr);
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('');
   }
   const editItem = (i) => {
-    const newArr2 = arr.map(e => { if (e.inputText === i.target.nextSibling.innerHTML) e.check = i.target.checked; return e });
+    let ind;
+    let lastItem;
+    const newArr2 = arr.map(e => { if (e.inputText === i.target.nextSibling.innerHTML) {
+      e.check = i.target.checked; 
+      ind = arr.indexOf(e);
+      lastItem = e;
+    }
+      return e });
+      if (lastItem.check) {
+      newArr2[newArr2.length] = lastItem;
+      newArr2.splice(ind, 1);
+      }
+      else {
+        newArr2.splice(ind, 1);
+        newArr2.unshift(lastItem);
+      }
     setArr(newArr2)
     localStorage.setItem('items', JSON.stringify(newArr2));
   }
-
   const setImportant = (i) => {
     const newArr2 = arr.map(e => {     
       if (e.inputText === i.target.offsetParent.offsetParent.innerText) {e.imp ? e.imp = !e.imp : e.imp = true; return e }
