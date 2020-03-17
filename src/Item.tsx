@@ -8,6 +8,7 @@ interface P {
     checked?: boolean,
     isChecked?: (e: any) => void,
     isImportant?: (e: any) => void,
+    delItem?: (e: any) => void,
     imp?: boolean,
 }
 
@@ -20,6 +21,6 @@ export default function Item(p: P) {
 
             <div style={{ width: 25, cursor: 'pointer' }} onClick = {p.isImportant}><img src="https://image.flaticon.com/icons/svg/148/148768.svg" /></div>
 
-            <div style={{ width: 25, cursor: 'pointer' }}><img src="https://image.flaticon.com/icons/svg/148/148766.svg" /></div></div>
+            <div style={{ width: 25, cursor: 'pointer' }} onClick = {p.delItem}><img src="https://image.flaticon.com/icons/svg/148/148766.svg" /></div></div>
     </div>
 }

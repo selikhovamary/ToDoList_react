@@ -116,8 +116,12 @@ export default function ToDo() {
       setBg(bgVal); localStorage.setItem('bg', JSON.stringify(bgVal))
     }
   }
-
-  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} isChecked={editItem} isImportant = {setImportant} imp = {el.imp} checked={el.check} key={Math.random()} /> })
+const deleteItem = (i) => {
+  const newArr2 = arr.filter(e => e.inputText !== i.target.offsetParent.offsetParent.innerText);
+  setArr(newArr2)
+  localStorage.setItem('items', JSON.stringify(newArr2));
+}
+  const items = arr.map((el) => { return <Item style={style.item} text={el.inputText} delItem={deleteItem} isChecked={editItem} isImportant = {setImportant} imp = {el.imp} checked={el.check} key={Math.random()} /> })
 
 
   return (
