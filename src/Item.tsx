@@ -19,8 +19,8 @@ export default function Item(p: P) {
         <label style={{ overflow: 'hidden', textOverflow: 'ellipsis', height: 21.34, paddingRight:55 }}>{p.text}</label>
         <div style={{ display: 'flex', width: 65, justifyContent: 'space-between', position: 'absolute', right: 7, top: 4 }}>
 
-            <div style={{ width: 25, cursor: 'pointer' }} onClick = {p.isImportant}><img src="https://image.flaticon.com/icons/svg/148/148768.svg" /></div>
+            <button style={{ width: 25, cursor: 'pointer' }} onClick = {p.isImportant}><img src="https://image.flaticon.com/icons/svg/148/148768.svg" /></button>
 
-            <div style={{ width: 25, cursor: 'pointer' }} onClick = {p.delItem}><img src="https://image.flaticon.com/icons/svg/148/148766.svg" /></div></div>
+            <button style={{ width: 25, cursor: 'pointer' }} onClick = {p.delItem}><img src="https://image.flaticon.com/icons/svg/148/148766.svg" /></button></div>
     </div>
 }
