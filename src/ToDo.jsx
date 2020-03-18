@@ -90,7 +90,7 @@ export default function ToDo() {
       else return false;
     }
     if (checkTheSame()) return;
-    const newArr = arr.concat({ inputText, checked, imp,  key: Math.random() });
+    const newArr = arr.concat({ inputText, check: false, imp,  key: Math.random() });
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('');
