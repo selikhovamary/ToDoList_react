@@ -123,7 +123,9 @@ const deleteItem = (i) => {
   setArr(newArr2)
   localStorage.setItem('items', JSON.stringify(newArr2));
 }
-const arr1 = arr.sort((a, b) => a.check < b.check ? -1 : 1)
+const arr1 = arr.sort((a, b) => (a.inputText < b.inputText ? -1 : 1)).sort((a, b) => {
+  return a.check < b.check ? -1 : 1;
+});
 const items = arr1.map((el) => { return <Item style={style.item} text={el.inputText} delItem={deleteItem} isChecked={editItem} isImportant = {setImportant} imp = {el.imp} checked={el.check} key={Math.random()} /> })
 
 
