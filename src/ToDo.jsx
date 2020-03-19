@@ -104,8 +104,9 @@ export default function ToDo() {
     localStorage.setItem('items', JSON.stringify(newArr2));
   }
   const setImportant = (i) => {
+    debugger
     const newArr2 = arr.map(e => {     
-      if (e.inputText === i.target.offsetParent.offsetParent.innerText) {e.imp ? e.imp = !e.imp : e.imp = true; return e }
+      if (e.inputText === i.inputText) {e.imp ? e.imp = !e.imp : e.imp = true; return e }
       else return e;
     });
       setArr(newArr2)
@@ -119,14 +120,14 @@ export default function ToDo() {
     }
   }
 const deleteItem = (i) => {
-  const newArr2 = arr.filter(e => e.inputText !== i.target.offsetParent.offsetParent.innerText);
+  const newArr2 = arr.filter(e => e.inputText !== i.inputText);
   setArr(newArr2)
   localStorage.setItem('items', JSON.stringify(newArr2));
 }
 const arr1 = arr.sort((a, b) => (a.inputText < b.inputText ? -1 : 1)).sort((a, b) => {
   return a.check < b.check ? -1 : 1;
 });
-const items = arr1.map((el) => { return <Item style={style.item} text={el.inputText} delItem={deleteItem} isChecked={editItem} isImportant = {setImportant} imp = {el.imp} checked={el.check} key={Math.random()} /> })
+const items = arr1.map((el) => { return <Item style={style.item} text={el.inputText} delItem={() => deleteItem(el)} isChecked={editItem} isImportant = {() => setImportant(el)} imp = {el.imp} checked={el.check} key={Math.random()} /> })
 
 
   return (
