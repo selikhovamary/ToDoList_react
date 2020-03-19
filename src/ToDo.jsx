@@ -79,8 +79,6 @@ export default function ToDo() {
   const [inputText, setInputText] = useState('');
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem('items')) || []);
   const [bg, setBg] = useState(JSON.parse(localStorage.getItem('bg')) || 'url(https://images.unsplash.com/photo-1526321839579-b73b23915824?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)')
-  let checked;
-  const [imp, setImp] = useState(false);
 
   const addItems = () => {
     if (!inputText) return;
@@ -90,12 +88,12 @@ export default function ToDo() {
       else return false;
     }
     if (checkTheSame()) return;
-    const newArr = arr.concat({ inputText, check: false, imp,  key: Math.random() });
+    const newArr = arr.concat({ inputText, check: false, imp: false,  key: Math.random() });
     setArr(newArr);
     localStorage.setItem('items', JSON.stringify(newArr))
     setInputText('');
   }
-  const editItem = (i) => {
+  const checkItems = (i) => {
     const newArr2 = arr.map(e => { if (e.inputText === i.target.nextSibling.innerHTML) {
       e.check = i.target.checked; 
     }
@@ -104,7 +102,6 @@ export default function ToDo() {
     localStorage.setItem('items', JSON.stringify(newArr2));
   }
   const setImportant = (i) => {
-    debugger
     const newArr2 = arr.map(e => {     
       if (e.inputText === i.inputText) {e.imp ? e.imp = !e.imp : e.imp = true; return e }
       else return e;
@@ -127,7 +124,7 @@ const deleteItem = (i) => {
 const arr1 = arr.sort((a, b) => (a.inputText < b.inputText ? -1 : 1)).sort((a, b) => {
   return a.check < b.check ? -1 : 1;
 });
-const items = arr1.map((el) => { return <Item style={style.item} text={el.inputText} delItem={() => deleteItem(el)} isChecked={editItem} isImportant = {() => setImportant(el)} imp = {el.imp} checked={el.check} key={Math.random()} /> })
+const items = arr1.map((el) => { return <Item style={style.item} text={el.inputText} delItem={() => deleteItem(el)} isChecked={checkItems} isImportant = {() => setImportant(el)} imp = {el.imp} checked={el.check} key={Math.random()} /> })
 
 
   return (
